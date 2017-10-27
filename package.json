@@ -52,7 +52,9 @@
     "release:major": "changelog -M && git add CHANGELOG.md && git commit -m 'Actualizar CHANGELOG.md' && npm version major && git push origin master --tags && sudo npm publish",
     "release:patch": "changelog -p && git add CHANGELOG.md && git commit -m 'Actualizar CHANGELOG.md' && npm version patch && git push origin master --tags && sudo npm publish"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lmsp/data-ornament.git"
