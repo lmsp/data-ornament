@@ -17,7 +17,7 @@ Data Ornament
 
 [![NPM](https://nodei.co/npm/data-ornament.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/data-ornament/)
 
-Librería básica punto de partida para otras librerías
+Librería para procesar texto y datos en JSON y XML
 
 ## Instalación
 
