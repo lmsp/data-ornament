@@ -1,0 +1,7 @@
+flow/
+test/
+.bithoundrc
+.editorconfig
+.eslintrc
+.flowconfig
+.travis.yml

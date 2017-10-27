@@ -1,0 +1,7 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["standard", "standard-flow"],
+  "env": {
+    "jest": true
+  }
+}

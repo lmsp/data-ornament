@@ -1,0 +1,5 @@
+[ignore]
+.*/node_modules/stylelint/.*
+
+[libs]
+./flow/flowdecl.js.flow
