@@ -18,6 +18,7 @@ test('select word in string', () => {
       v: 'patata'
     }
   ])
+  expect(select(word, { isolatedLeft: true }, doc2)).toMatchObject([])
 })
 
 test('select word in json', () => {

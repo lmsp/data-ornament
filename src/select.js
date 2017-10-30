@@ -61,6 +61,27 @@ const selectUncurried = (
     return R.reduce(reduceElement, [], doc)
   }
 }
+
+/**
+ * select - Selecciona todos los elementos que contienen word dentro de doc.
+ *
+ * @param {string} word    Texto a buscar
+ * @param {Object} options  Opciones:
+ *                          **isolatedLeft** Si vale true selecciona sólo los textos
+ *                          que por la izquierda contengan un espacio, tabulador
+ *                          o retorno de carro. Valor por defecto false.
+ *                          **isolatedRight** Si vale true selecciona sólo los textos
+ *                          que por la derecha contengan un espacio, tabulador o
+ *                          retorno de carro. Valor por defecto false.
+ *                          **isolatedBoth** Si vale true selecciona sólo los textos
+ *                          que tanto por la izquierda como por la derecha contengan
+ *                          un espacio, tabulador o retorno de carro. Valor por
+ *                          defecto false.
+ * @param {string|Array} doc Documento en el que buscar
+ *
+ * @returns {Array} Devuelve el documento que contiene word todas las veces que
+ *                  aparece en doc 
+ */
 const select = R.curry(selectUncurried)
 
 export default select
