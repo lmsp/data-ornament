@@ -5,23 +5,24 @@
 -   [equal](#equal)
 -   [excludeIntersections](#excludeintersections)
 -   [select](#select)
+-   [selectBetween](#selectbetween)
 
 ## equal
 
-[src/equal.js:12-21](https://github.com/lmsp/data-ornament/blob/113f0376e31c241b1dd38e4b340dfb233bea4a9e/src/equal.js#L12-L21 "Source code on GitHub")
+[src/equal.js:12-21](https://github.com/lmsp/data-ornament/blob/b253fd1990a5b5aa451fdd748b663cec81188b2c/src/equal.js#L12-L21 "Source code on GitHub")
 
 equal - Devuelve true si word1 o word1.v es idéntico a word2 o word2.v
 
 **Parameters**
 
--   `word1` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Primer valor para comprobar igualdad
--   `word2` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Segundo valor a comprobar igualdad
+-   `word1` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Primer valor para comprobar igualdad
+-   `word2` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Segundo valor a comprobar igualdad
 
 Returns **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 
 ## excludeIntersections
 
-[src/excludeIntersections.js:27-27](https://github.com/lmsp/data-ornament/blob/113f0376e31c241b1dd38e4b340dfb233bea4a9e/src/excludeIntersections.js#L27-L27 "Source code on GitHub")
+[src/excludeIntersections.js:27-27](https://github.com/lmsp/data-ornament/blob/b253fd1990a5b5aa451fdd748b663cec81188b2c/src/excludeIntersections.js#L27-L27 "Source code on GitHub")
 
 excludeIntersections - Devuelve una lista de elementos que pertenecen a doc1
                        y que no intersectan con ningún elemento de doc2.
@@ -39,25 +40,60 @@ Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refere
 
 ## select
 
-[src/select.js:85-85](https://github.com/lmsp/data-ornament/blob/113f0376e31c241b1dd38e4b340dfb233bea4a9e/src/select.js#L85-L85 "Source code on GitHub")
+[src/select.js:97-97](https://github.com/lmsp/data-ornament/blob/b253fd1990a5b5aa451fdd748b663cec81188b2c/src/select.js#L97-L97 "Source code on GitHub")
 
 select - Selecciona todos los elementos que contienen word dentro de doc.
 
 **Parameters**
 
 -   `word` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** Texto a buscar
--   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Opciones:
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Opciones:<br/>
                              **isolatedLeft** Si vale true selecciona sólo los textos
                              que por la izquierda contengan un espacio, tabulador
-                             o retorno de carro. Valor por defecto false.
+                             o retorno de carro. Valor por defecto false.<br/>
                              **isolatedRight** Si vale true selecciona sólo los textos
                              que por la derecha contengan un espacio, tabulador o
-                             retorno de carro. Valor por defecto false.
+                             retorno de carro. Valor por defecto false.<br/>
                              **isolatedBoth** Si vale true selecciona sólo los textos
                              que tanto por la izquierda como por la derecha contengan
                              un espacio, tabulador o retorno de carro. Valor por
-                             defecto false.
+                             defecto false.<br/>
 -   `doc` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array))** Documento en el que buscar
 
 Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** Devuelve el documento que contiene word todas las veces que
                  aparece en doc
+
+## selectBetween
+
+[src/selectBetween.js:161-161](https://github.com/lmsp/data-ornament/blob/b253fd1990a5b5aa451fdd748b663cec81188b2c/src/selectBetween.js#L161-L161 "Source code on GitHub")
+
+selectBetween -  Obtiene todas las apariciones de textos entre word1 y word2
+                 dentro de doc excepto las que contienen la lista de exclusiones
+
+**Parameters**
+
+-   `word1` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Primera palabra a buscar
+-   `word2` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object))** Segunda palabra a buscar
+-   `exclusions` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** Textos a excluir
+-   `options` **[Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** Opciones:<br/>
+                             **excludeFirst**: Si vale true se incluye word1 en
+                             la búsqueda. Valor por defecto false.<br/>
+                             **excludeLast**: Si vale true se incluye word2 en
+                             la búsqueda. Valor por defecto false.<br/>
+                             **excludeBoth**: Si vale true se incluiran word1 y
+                             word2 en la búsqueda. Valor por defecto false.<br/>
+                             **isolatedFirst**: Forma de seleccionar word1. Mirar
+                             select. Valores por defecto [false, false, false]<br/>
+                             **isolatedLast**: Forma de seleccionar word1. Mirar
+                             select. Valores por defecto [false, false, false]<br/>
+                             **trimLeft** Si vale true aplica la eliminación de
+                             blancos por la izquierda. Valor por defecto false.<br/>
+                             **trimRight** Si vale true aplica la eliminación de
+                             blancos por la derecha. Valor por defecto false.<br/>
+                             **trimBoth** Si vale true aplica la eliminación de
+                             blancos por la derecha y por la izquierda. Valor por
+                             defecto false.<br/>
+-   `doc` **([string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array))** Documento en el que buscar
+
+Returns **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)** Devuelve el documento que contiene los textos entre word1 y
+                 word2 excepto los contenidos en exclusions
