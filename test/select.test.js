@@ -10,15 +10,17 @@ test('select word in string', () => {
       v: 'patata'
     }
   ])
-  let doc2 = 'peppatata frita'
-  expect(select(word, { isolatedLeft: false }, doc2)).toMatchObject([
+  doc = 'peppatata frita'
+  expect(select(word, { isolatedLeft: false }, doc)).toMatchObject([
     {
       s: 3,
       e: 9,
       v: 'patata'
     }
   ])
-  expect(select(word, { isolatedLeft: true }, doc2)).toMatchObject([])
+  expect(select(word, { isolatedLeft: true }, doc)).toMatchObject([])
+  doc = 'patatapep frita'
+  expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([])
 })
 
 test('select word in json', () => {

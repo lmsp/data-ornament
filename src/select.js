@@ -22,12 +22,24 @@ const selectUncurried = (
       v: string
     ): boolean => {
       if (record.v === v) {
-        if (internalOptions.isolatedLeft || internalOptions.isolatedBoth) {
+        if (internalOptions.isolatedBoth) {
+          if (record.s === 0) {
+            if (record.e === doc.length) return true
+            if (R.any(R.equals(doc[record.e]), [' ', '\n', '\r'])) return true
+            return false
+          }
+          if (R.any(R.equals(doc[record.s - 1]), [' ', '\n', '\r'])) {
+            if (record.e === doc.length) return true
+            if (R.any(R.equals(doc[record.e]), [' ', '\n', '\r'])) return true
+          }
+          return false
+        }
+        if (internalOptions.isolatedLeft) {
           if (record.s === 0) return true
           if (R.any(R.equals(doc[record.s - 1]), [' ', '\n', '\r'])) return true
           return false
         }
-        if (internalOptions.isolatedRight || internalOptions.isolatedBoth) {
+        if (internalOptions.isolatedRight) {
           if (record.e === doc.length) return true
           if (R.any(R.equals(doc[record.e]), [' ', '\n', '\r'])) return true
           return false
@@ -66,21 +78,21 @@ const selectUncurried = (
  * select - Selecciona todos los elementos que contienen word dentro de doc.
  *
  * @param {string} word    Texto a buscar
- * @param {Object} options  Opciones:
+ * @param {Object} options  Opciones:<br/>
  *                          **isolatedLeft** Si vale true selecciona sólo los textos
  *                          que por la izquierda contengan un espacio, tabulador
- *                          o retorno de carro. Valor por defecto false.
+ *                          o retorno de carro. Valor por defecto false.<br/>
  *                          **isolatedRight** Si vale true selecciona sólo los textos
  *                          que por la derecha contengan un espacio, tabulador o
- *                          retorno de carro. Valor por defecto false.
+ *                          retorno de carro. Valor por defecto false.<br/>
  *                          **isolatedBoth** Si vale true selecciona sólo los textos
  *                          que tanto por la izquierda como por la derecha contengan
  *                          un espacio, tabulador o retorno de carro. Valor por
- *                          defecto false.
+ *                          defecto false.<br/>
  * @param {string|Array} doc Documento en el que buscar
  *
  * @returns {Array} Devuelve el documento que contiene word todas las veces que
- *                  aparece en doc 
+ *                  aparece en doc
  */
 const select = R.curry(selectUncurried)
 

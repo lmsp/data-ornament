@@ -10,7 +10,13 @@ import select from './select'
 const caller = list => {
   return doc => list
 }
-const selectBetweenUncurried = (word1, word2, exclusions, options, doc) => {
+const selectBetweenUncurried = (
+  word1: string | { s: number, e: number, v: string },
+  word2: string | { s: number, e: number, v: string },
+  exclusions: Array<{ s: number, e: number, v: string }>,
+  options: Object,
+  doc: string | Array<{ s: number, e: number, v: string }>
+): Array<{ s: number, e: number, v: string }> => {
   let internalOptions = _mergeOptions(
     {
       excludeFirst: false,
@@ -122,6 +128,36 @@ const selectBetweenUncurried = (word1, word2, exclusions, options, doc) => {
     R.addIndex(R.reject)((val, idx) => idx % 2 === 0)
   )()
 }
+/**
+ * selectBetween -  Obtiene todas las apariciones de textos entre word1 y word2
+ *                  dentro de doc excepto las que contienen la lista de exclusiones
+ *
+ * @param {string|Object} word1   Primera palabra a buscar
+ * @param {string|Object} word2   Segunda palabra a buscar
+ * @param {Array} exclusions Textos a excluir
+ * @param {Object} options  Opciones:<br/>
+ *                          **excludeFirst**: Si vale true se incluye word1 en
+ *                          la búsqueda. Valor por defecto false.<br/>
+ *                          **excludeLast**: Si vale true se incluye word2 en
+ *                          la búsqueda. Valor por defecto false.<br/>
+ *                          **excludeBoth**: Si vale true se incluiran word1 y
+ *                          word2 en la búsqueda. Valor por defecto false.<br/>
+ *                          **isolatedFirst**: Forma de seleccionar word1. Mirar
+ *                          select. Valores por defecto [false, false, false]<br/>
+ *                          **isolatedLast**: Forma de seleccionar word1. Mirar
+ *                          select. Valores por defecto [false, false, false]<br/>
+ *                          **trimLeft** Si vale true aplica la eliminación de
+ *                          blancos por la izquierda. Valor por defecto false.<br/>
+ *                          **trimRight** Si vale true aplica la eliminación de
+ *                          blancos por la derecha. Valor por defecto false.<br/>
+ *                          **trimBoth** Si vale true aplica la eliminación de
+ *                          blancos por la derecha y por la izquierda. Valor por
+ *                          defecto false.<br/>
+ * @param {string|Array} doc  Documento en el que buscar
+ *
+ * @returns {Array} Devuelve el documento que contiene los textos entre word1 y
+ *                  word2 excepto los contenidos en exclusions
+ */
 const selectBetween = R.curry(selectBetweenUncurried)
 
 export default selectBetween
