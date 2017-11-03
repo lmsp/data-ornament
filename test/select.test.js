@@ -39,6 +39,14 @@ test('select word in string', () => {
       v: 'patata'
     }
   ])
+  doc = ' patata '
+  expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([
+    {
+      s: 1,
+      e: 7,
+      v: 'patata'
+    }
+  ])
   expect(select(word, { isolatedLeft: true }, doc)).toMatchObject([
     {
       s: 1,

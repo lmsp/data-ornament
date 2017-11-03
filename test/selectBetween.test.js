@@ -84,6 +84,18 @@ test('selectBetween paragraphs in HTML(words in json)', () => {
       v: '<p>de cuyo nombre no quiero acordarme</p>'
     }
   ])
+  doc =
+    '<p>En un lugar <p>de la Mancha...</p>de cuyo nombre no quiero acordarme</p>'
+  result = selectBetween(word1, word2, [], {}, doc)
+  expect(result).toMatchObject([
+    { s: 0, e: 37, v: '<p>En un lugar <p>de la Mancha...</p>' }
+  ])
+  doc =
+    '<p>En un lugar <p>de la <p>Mancha...</p>de cuyo nombre no quiero acordarme</p>'
+  result = selectBetween(word1, word2, [], {}, doc)
+  expect(result).toMatchObject([
+    { s: 0, e: 40, v: '<p>En un lugar <p>de la <p>Mancha...</p>' }
+  ])
 })
 
 test('selectBetween paragraphs in HTML', () => {

@@ -65,36 +65,26 @@ const selectBetweenUncurried = (
         list[idx].t = 1
         return false
       } else {
-        list[idx].t = 0
+        list[idx].t = 2
         return true
       }
     } else {
       let lastType = list[idx - 1].t
-      if (lastType === 0) {
+      if (lastType === 1) {
+        if (equal(val, word2)) {
+          list[idx].t = 2
+          return false
+        } else {
+          list[idx].t = 1
+          return true
+        }
+      } else {
         if (equal(val, word1)) {
           list[idx].t = 1
           return false
         } else {
-          list[idx].t = 0
+          list[idx].t = 2
           return true
-        }
-      } else {
-        if (lastType === 1) {
-          if (equal(val, word2)) {
-            list[idx].t = 2
-            return false
-          } else {
-            list[idx].t = 0
-            return true
-          }
-        } else {
-          if (equal(val, word1)) {
-            list[idx].t = 1
-            return false
-          } else {
-            list[idx].t = 0
-            return true
-          }
         }
       }
     }
