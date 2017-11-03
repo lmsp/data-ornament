@@ -1,3 +1,11 @@
+#### 0.1.1 (2017-11-03)
+
+##### Tests
+
+* **app:**
+  * Completar test selectBetween ([57c774db](https://github.com/lmsp/data-ornament/commit/57c774db6bf7383cf53d429fb12a2fee67d7fbba))
+  * Añadir test para cobertura ([cb1aaae8](https://github.com/lmsp/data-ornament/commit/cb1aaae8cbdb622ac6cdbf5ede30cff04cc86d86))
+
 ### 0.1.0 (2017-10-31)
 
 ##### Documentation Changes
