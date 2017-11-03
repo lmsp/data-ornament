@@ -21,6 +21,57 @@ test('select word in string', () => {
   expect(select(word, { isolatedLeft: true }, doc)).toMatchObject([])
   doc = 'patatapep frita'
   expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([])
+  word = 'patata'
+  doc = 'patata'
+  expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([
+    {
+      s: 0,
+      e: 6,
+      v: 'patata'
+    }
+  ])
+  word = 'patata'
+  doc = ' patata'
+  expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([
+    {
+      s: 1,
+      e: 7,
+      v: 'patata'
+    }
+  ])
+  expect(select(word, { isolatedLeft: true }, doc)).toMatchObject([
+    {
+      s: 1,
+      e: 7,
+      v: 'patata'
+    }
+  ])
+  doc = ' patata '
+  expect(select(word, { isolatedBoth: true }, doc)).toMatchObject([
+    {
+      s: 1,
+      e: 7,
+      v: 'patata'
+    }
+  ])
+  doc = 'patata'
+  expect(select(word, { isolatedRight: true }, doc)).toMatchObject([
+    {
+      s: 0,
+      e: 6,
+      v: 'patata'
+    }
+  ])
+  doc = 'patata '
+  expect(select(word, { isolatedRight: true }, doc)).toMatchObject([
+    {
+      s: 0,
+      e: 6,
+      v: 'patata'
+    }
+  ])
+  doc = 'patatapep'
+  expect(select(word, { isolatedRight: true }, doc)).toMatchObject([])
 })
 
 test('select word in json', () => {

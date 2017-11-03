@@ -7,8 +7,8 @@ import equal from './equal'
 import excludeIntersections from './excludeIntersections'
 import select from './select'
 
-const caller = list => {
-  return doc => list
+const returnWordInArray = word => {
+  return doc => [word]
 }
 const selectBetweenUncurried = (
   word1: string | { s: number, e: number, v: string },
@@ -45,13 +45,13 @@ const selectBetweenUncurried = (
       R.pipe(
         R.is(String, word1)
           ? select(word1, internalOptionsFirst)
-          : caller(word1),
+          : returnWordInArray(word1),
         excludeIntersections(R.__, exclusions)
       )(doc),
       R.pipe(
         R.is(String, word2)
           ? select(word2, internalOptionsLast)
-          : caller(word2),
+          : returnWordInArray(word2),
         excludeIntersections(R.__, exclusions)
       )(doc)
     )

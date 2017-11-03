@@ -36,6 +36,56 @@ test('selectBetween word in string', () => {
   ])
 })
 
+test('selectBetween paragraphs in HTML(words in json)', () => {
+  let doc = '<p>En un lugar de la Mancha...</p>'
+  let result = select('</p>', {}, doc)
+  expect(result).toMatchObject([
+    {
+      s: 30,
+      e: 34,
+      v: '</p>'
+    }
+  ])
+  result = select('<p>', {}, doc)
+  expect(result).toMatchObject([
+    {
+      s: 0,
+      e: 3,
+      v: '<p>'
+    }
+  ])
+  let word1 = { s: 0, e: 3, v: '<p>' }
+  let word2 = { s: 30, e: 34, v: '</p>' }
+  result = selectBetween(word1, word2, [], {}, doc)
+  expect(result).toMatchObject([
+    {
+      s: 0,
+      e: 34,
+      v: '<p>En un lugar de la Mancha...</p>'
+    }
+  ])
+})
+
+test('selectBetween paragraphs in HTML(words in json)', () => {
+  let doc =
+    '<p>En un lugar de la Mancha...</p><p>de cuyo nombre no quiero acordarme</p>'
+  let word1 = '<p>'
+  let word2 = '</p>'
+  let result = selectBetween(word1, word2, [], {}, doc)
+  expect(result).toMatchObject([
+    {
+      s: 0,
+      e: 34,
+      v: '<p>En un lugar de la Mancha...</p>'
+    },
+    {
+      s: 34,
+      e: 75,
+      v: '<p>de cuyo nombre no quiero acordarme</p>'
+    }
+  ])
+})
+
 test('selectBetween paragraphs in HTML', () => {
   let doc = '<p>En un lugar de la Mancha...</p>'
   let word1 = '<p>'
