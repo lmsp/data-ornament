@@ -1,7 +1,7 @@
 {
   "name": "data-ornament",
   "author": "Luis Miguel Santamaría Pérez",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Librería para procesar texto y datos en JSON y XML",
   "main": "dist/data-ornament.js",
   "license": "MIT",
